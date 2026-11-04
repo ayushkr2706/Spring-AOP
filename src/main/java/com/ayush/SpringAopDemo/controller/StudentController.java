@@ -24,6 +24,7 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<String> getStudent(){
+
         return ResponseEntity.ok(studentService.getStudent());
     }
 

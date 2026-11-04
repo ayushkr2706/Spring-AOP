@@ -5,8 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Locale;
-
 @Component
 @Aspect
 public class LoggingAspect {    //Proxy object
@@ -72,20 +70,44 @@ public class LoggingAspect {    //Proxy object
 //
 //  }
 
-    @Around("execution(* com.ayush.SpringAopDemo.service.StudentService.dummyMethod(..))")
-    public String logDummyMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("Before Dummy method");
+//    @Around("execution(* com.ayush.SpringAopDemo.service.StudentService.dummyMethod(..))")
+//    public String logDummyMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+//        System.out.println("Before Dummy method");
+//
+//        Object[] args = joinPoint.getArgs();
+//
+//        String s = (String) args[0];
+//
+//        String modifiedString = s.toUpperCase();
+//
+//        Object[] obj = {modifiedString};
+//
+//        String response = (String) joinPoint.proceed(obj);
+//
+//        return response + " : Final Answer";
+//    }
 
-        Object[] args = joinPoint.getArgs();
+//    @Before("execution(public String com.ayush.SpringAopDemo.service.StudentService.getStudent())")     //pointcut
+//    public void logBeforeMethod(){
+//        System.out.println("Method Intercepted");
+//
+//    }
 
-        String s = (String) args[0];
+//    @Before("execution(* com.ayush.SpringAopDemo.service..*(..))")
+//    public void logBeforeMethod(){
+//        System.out.println("Method Intercepted");
+//    }
 
-        String modifiedString = s.toUpperCase();
+    //this is a named Pointcut.
+    @Pointcut("within(com.ayush.SpringAopDemo.service.*)")
+    public void logAllServiceMethods(){     //now instead of writing the whole pointcut expression everytime
+                                             //we will use "logAfterServiceMethod()"
 
-        Object[] obj = {modifiedString};
-
-        String response = (String) joinPoint.proceed(obj);
-
-        return response + " : Final Answer";
     }
+
+    @Before("logAllServiceMethods()")
+    public void logBeforeMethod(){
+        System.out.println("Method Intercepted");
+    }
+
 }
