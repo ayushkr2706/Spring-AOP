@@ -112,9 +112,21 @@ public class LoggingAspect {    //Proxy object
 
 
     //Being called for all the methods inside the class which has @Service annotation.
-    @Before("@within(org.springframework.stereotype.Service)")
-    public void logBeforeMethod(){
-        System.out.println("Method intercepted");
+//    @Before("@within(org.springframework.stereotype.Service)")
+//    public void logBeforeMethod(){
+//        System.out.println("Method intercepted");
+//    }
+
+//    @Before("args(*, com.ayush.SpringAopDemo.dto.StudentDto)"
+//    + "&&" + "within(com.ayush.SpringAopDemo.service..*)")
+//    public void logBeforeMethod2(){
+//        System.out.println("Method Intercepted");
+//    }
+
+    @Before("@args(*, jdk.jfr.Timestamp)"
+            + "&&" + "within(com.ayush.SpringAopDemo.service..*)")
+    public void logBeforeMethod3(){
+        System.out.println("Method intercepted using @args");
     }
 
 }

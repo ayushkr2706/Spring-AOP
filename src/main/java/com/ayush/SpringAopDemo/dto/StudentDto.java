@@ -1,5 +1,8 @@
 package com.ayush.SpringAopDemo.dto;
 
+import jdk.jfr.Timestamp;
+
+@Timestamp
 public class StudentDto {
 
     private String name;
