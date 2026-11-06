@@ -99,15 +99,22 @@ public class LoggingAspect {    //Proxy object
 //    }
 
     //this is a named Pointcut.
-    @Pointcut("within(com.ayush.SpringAopDemo.service.*)")
-    public void logAllServiceMethods(){     //now instead of writing the whole pointcut expression everytime
-                                             //we will use "logAfterServiceMethod()"
+//    @Pointcut("within(com.ayush.SpringAopDemo.service.*)")
+//    public void logAllServiceMethods(){     //now instead of writing the whole pointcut expression everytime
+//                                             //we will use "logAfterServiceMethod()"
+//
+//    }
 
-    }
+//    @Before("logAllServiceMethods()")
+//    public void logBeforeMethod(){
+//        System.out.println("Method Intercepted");
+//    }
 
-    @Before("logAllServiceMethods()")
+
+    //Being called for all the methods inside the class which has @Service annotation.
+    @Before("@within(org.springframework.stereotype.Service)")
     public void logBeforeMethod(){
-        System.out.println("Method Intercepted");
+        System.out.println("Method intercepted");
     }
 
 }
