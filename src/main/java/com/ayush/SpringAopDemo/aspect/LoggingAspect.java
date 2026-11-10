@@ -1,12 +1,9 @@
-package com.ayush.SpringAopDemo.aspects;
+package com.ayush.SpringAopDemo.aspect;
 
-import com.ayush.SpringAopDemo.dto.StudentDto;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
 
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class LoggingAspect {    //Proxy object
 
 //    //Advice
@@ -123,10 +120,15 @@ public class LoggingAspect {    //Proxy object
 //        System.out.println("Method Intercepted");
 //    }
 
-    @Before("@args(*, jdk.jfr.Timestamp)"
-            + "&&" + "within(com.ayush.SpringAopDemo.service..*)")
-    public void logBeforeMethod3(){
-        System.out.println("Method intercepted using @args");
+//    @Before("@args(*, jdk.jfr.Timestamp)"
+//            + "&&" + "within(com.ayush.SpringAopDemo.service..*)")
+//    public void logBeforeMethod3(){
+//        System.out.println("Method intercepted using @args");
+//    }
+
+    @Before("target(com.ayush.SpringAopDemo.service.StudentService)")
+    public void logBeforeMethod4(){
+        System.out.println("Method Intercepted");
     }
 
 }

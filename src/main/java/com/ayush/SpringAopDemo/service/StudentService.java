@@ -1,5 +1,6 @@
 package com.ayush.SpringAopDemo.service;
 
+import com.ayush.SpringAopDemo.annotation.TrackExecutionTime;
 import com.ayush.SpringAopDemo.dto.StudentDto;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,13 @@ public class StudentService {   //Target object
         return student;
     }
 
+    @TrackExecutionTime
     public String getStudent(){
+        try{
+            Thread.sleep(2000);
+        } catch(Exception ex){
+
+        }
         System.out.println("All Student Data");
         return "All Student Data";
     }
