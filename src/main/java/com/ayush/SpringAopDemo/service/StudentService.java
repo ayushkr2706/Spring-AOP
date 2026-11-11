@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentService {   //Target object
 
+    @TrackExecutionTime(
+            warnAfter = 1800,
+            value = "Time taken is too long"
+    )
     public StudentDto createStudent(String auth, StudentDto student){
         String authKey = auth.trim();
         if (!authKey.equals("12345")) {
@@ -17,7 +21,10 @@ public class StudentService {   //Target object
         return student;
     }
 
-    @TrackExecutionTime
+    @TrackExecutionTime(
+            warnAfter = 1500,
+            value = "Time taken is too long"
+    )
     public String getStudent(){
         try{
             Thread.sleep(2000);
